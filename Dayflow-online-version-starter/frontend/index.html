@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dayflow | People Desk</title>
+<style>
+:root{--paper:#f5f1e8;--paper2:#eee9de;--white:#fbfaf6;--ink:#202a25;--muted:#6d756e;--line:#c9c2b5;--green:#20563f;--green2:#173f2e;--orange:#a65335;--red:#963f32;--yellow:#8a641d}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:14px}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}.topline{height:4px;background:var(--green)}
+#login{min-height:calc(100vh - 4px);display:grid;grid-template-columns:56% 44%}.login-left{padding:46px 7%;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}.wordmark{font-weight:800;letter-spacing:1.5px;font-size:17px}.wordmark span{color:var(--orange)}.wordmark small{display:block;font-size:9px;letter-spacing:1px;color:var(--muted);font-weight:normal;margin-top:4px}.login-copy{max-width:650px}.kicker{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--orange);font-weight:bold}.login-copy h1{font-family:Georgia,serif;font-weight:normal;font-size:64px;line-height:.96;letter-spacing:-3px;margin:22px 0}.login-copy h1 em{font-style:normal;color:var(--green)}.login-copy p{max-width:570px;color:#59625b;line-height:1.75}.small-list{margin-top:28px;border-top:1px solid var(--line);max-width:590px}.small-list div{display:flex;gap:20px;padding:12px 0;border-bottom:1px solid var(--line);font-size:12px}.small-list b{width:90px;color:var(--green)}
+.login-right{display:flex;align-items:center;justify-content:center;padding:40px}.login-box{width:min(430px,100%)}.login-box h2{font-family:Georgia,serif;font-size:30px;font-weight:normal;margin:7px 0}.tabs{display:flex;border-bottom:1px solid var(--line);margin:28px 0 20px}.tabs button{border:0;background:none;padding:11px 0;margin-right:25px;color:#858a84;font-size:11px;font-weight:bold;letter-spacing:1px}.tabs button.active{color:var(--green);border-bottom:2px solid var(--green)}.role{display:flex;border:1px solid var(--line);margin-bottom:20px}.role button{flex:1;border:0;background:var(--paper2);padding:11px;color:var(--muted);font-weight:bold;font-size:12px}.role button+button{border-left:1px solid var(--line)}.role button.active{background:var(--green);color:#fff}
+.field{margin-bottom:14px}.field label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:6px}.input{width:100%;border:1px solid #aaa497;background:var(--white);padding:11px 10px;border-radius:2px;color:var(--ink);outline:none}.input:focus{border-color:var(--green);box-shadow:inset 0 -2px 0 var(--green)}.btn{border:1px solid #99998f;background:var(--paper2);color:var(--ink);padding:10px 14px;border-radius:2px;font-weight:bold;font-size:12px}.btn:hover{background:#e4ded1}.btn.primary{background:var(--green);color:#fff;border-color:var(--green)}.btn.danger{color:var(--red);border-color:#c7a69e;background:#f3e5e0}.demo{margin-top:16px;padding:12px;border-left:3px solid var(--orange);background:#e6dfd3;color:#626a63;font-size:11px;line-height:1.6}.error{margin-top:10px;color:var(--red);font-size:11px;min-height:16px}
+#app{display:none;min-height:100vh}.appbar{height:65px;background:#eee9de;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:10}.app-user{display:flex;align-items:center;gap:9px}.avatar{width:34px;height:34px;background:#d5d2c8;border:1px solid #a7a9a0;display:grid;place-items:center;font-weight:bold;font-size:10px;border-radius:2px}.shell{display:flex;min-height:calc(100vh - 65px)}.sidebar{width:225px;background:#e8e2d5;border-right:1px solid var(--line);padding:17px 11px;flex:none}.nav-title{font-size:9px;color:#858a83;text-transform:uppercase;letter-spacing:1.5px;margin:11px 10px 7px}.nav{width:100%;border:0;background:none;text-align:left;padding:10px 11px;color:#5f6961;border-radius:2px;font-size:12px}.nav:hover{background:#ddd7ca}.nav.active{background:var(--green);color:#fff}.logout{margin-top:28px;color:var(--red)}
+.main{padding:29px 31px;max-width:1450px;width:100%;margin:auto}.page-title{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:18px}.page-title h1{font-family:Georgia,serif;font-weight:normal;font-size:34px;letter-spacing:-1px;margin:5px 0}.muted{color:var(--muted);font-size:12px}.kicker.green{color:var(--green)}.grid{display:grid;gap:13px}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:1.2fr .8fr}.card{background:var(--white);border:1px solid var(--line);box-shadow:0 2px 0 rgba(48,45,37,.08);padding:17px;border-radius:2px}.card h2{font-family:Georgia,serif;font-weight:normal;font-size:20px;margin:0 0 5px}.metric .label{font-size:10px;color:#747c74;text-transform:uppercase;letter-spacing:.8px}.metric .number{font-family:Georgia,serif;font-size:28px;margin:9px 0 2px}.rule{border-top:1px solid var(--line);margin:14px 0}.status{display:inline-block;font-size:9px;text-transform:uppercase;letter-spacing:.5px;font-weight:bold;padding:4px 6px;background:#ddd9cf;color:#5d655e;border-radius:2px}.status.active{background:#d7e5db;color:#1f6047}.status.pending{background:#eadfc7;color:#825d1d}.status.rejected{background:#ead6d0;color:#923f31}
+.person-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);gap:12px}.person-row:last-child{border-bottom:0}.person{display:flex;align-items:center;gap:9px;min-width:0}.person-name{font-weight:bold}.person-sub{font-size:11px;color:var(--muted);margin-top:3px}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:12px}.table th{font-size:9px;color:#757c75;text-align:left;text-transform:uppercase;letter-spacing:.7px;border-bottom:2px solid #aaa497;padding:10px 9px}.table td{border-bottom:1px solid var(--line);padding:11px 9px;vertical-align:middle}
+.notice{padding:11px;background:#e8e2d6;border-left:3px solid var(--green);font-size:11px;color:#5d665f;line-height:1.6}.modal-bg{position:fixed;inset:0;background:rgba(32,39,34,.55);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}.modal{width:min(760px,100%);max-height:90vh;overflow:auto;background:var(--paper);border:1px solid #8e9189;box-shadow:7px 7px 0 rgba(20,25,22,.2);padding:22px;border-radius:2px}.modal-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:15px}.modal h2{font-family:Georgia,serif;font-weight:normal;font-size:25px;margin:0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.full{grid-column:1/-1}.camera{height:270px;background:#1e2924;border:1px solid #5b675f;position:relative;display:grid;place-items:center;overflow:hidden}.face{height:210px;width:165px;border:2px solid #cbd5cd;border-radius:50%}.scanline{position:absolute;left:25%;right:25%;top:20%;height:2px;background:#b45c3a;box-shadow:0 0 12px #b45c3a;animation:scan 2s infinite}@keyframes scan{50%{top:78%}}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.cal-head{text-align:center;font-size:9px;color:var(--muted);padding:5px}.cal-day{min-height:66px;background:var(--white);border:1px solid var(--line);padding:7px;font-size:11px}.cal-day.today{border:2px solid var(--green)}.event{font-size:9px;margin-top:7px;background:#dce5df;color:#24553f;padding:4px}.toast{position:fixed;right:20px;bottom:20px;background:#202a25;color:#fff;padding:12px 15px;font-size:12px;border-left:3px solid #d06b45;z-index:200}
+@media(max-width:950px){#login{grid-template-columns:1fr}.login-left{display:none}.g4{grid-template-columns:1fr 1fr}.g2,.g3{grid-template-columns:1fr}.sidebar{width:195px}}@media(max-width:680px){.sidebar{display:none}.main{padding:20px 15px}.g4{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.login-right{padding:25px}.page-title{align-items:flex-start;gap:15px;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="topline"></div>
+<section id="login">
+  <div class="login-left">
+    <div class="wordmark">DAYFLOW <span>/</span> PEOPLE DESK<small>INTERNAL HUMAN RESOURCE SYSTEM</small></div>
+    <div class="login-copy">
+      <div class="kicker">Staff administration · Bengaluru</div>
+      <h1>The everyday work<br>behind a <em>team.</em></h1>
+      <p>Dayflow keeps the small things together: attendance at the office, leave requests, staff records and the monthly salary register.</p>
+      <div class="small-list">
+        <div><b>01 — ATTENDANCE</b><span>Check in when you arrive. Review the record afterwards.</span></div>
+        <div><b>02 — PEOPLE</b><span>Find a colleague and open the information you are allowed to see.</span></div>
+        <div><b>03 — TIME OFF</b><span>Send a request. HR records the decision.</span></div>
+        <div><b>04 — PAY</b><span>Keep the salary register and employee pay details in one place.</span></div>
+      </div>
+    </div>
+    <div class="muted">Dayflow · qualifying round build</div>
+  </div>
+  <div class="login-right">
+    <div class="login-box">
+      <div class="kicker green">People desk</div><h2>Sign in</h2><div class="muted">Use your employee ID or work email.</div>
+      <div class="tabs"><button id="tabSignIn" class="active">SIGN IN</button><button id="tabCreate">NEW ACCOUNT</button></div>
+      <div class="role"><button id="roleEmployee" class="active">Employee</button><button id="roleAdmin">Admin / HR</button></div>
+      <div id="signInView">
+        <div class="field"><label>Employee ID / email</label><input id="loginId" class="input" placeholder="OIAnSh2025001"></div>
+        <div class="field"><label>Password</label><input id="loginPassword" class="input" type="password" placeholder="Password"></div>
+        <button id="signIn" class="btn primary" style="width:100%">Continue to Dayflow</button>
+        <div id="loginError" class="error"></div>
+        <div class="demo"><b>Employee demo</b> · OIAnSh2025001 / Dayflow@123<br><b>Admin demo</b> · OIAdMi2020001 / Admin@123</div>
+      </div>
+      <div id="createView" class="hidden">
+        <div class="form-grid">
+          <div class="field"><label>First name</label><input id="newFirst" class="input"></div>
+          <div class="field"><label>Last name</label><input id="newLast" class="input"></div>
+          <div class="field"><label>Work email</label><input id="newEmail" class="input"></div>
+          <div class="field"><label>Joining date</label><input id="newJoin" class="input" type="date"></div>
+          <div class="field"><label>Department</label><input id="newDept" class="input"></div>
+          <div class="field"><label>Job title</label><input id="newTitle" class="input"></div>
+          <div class="field full" id="adminCodeField" style="display:none"><label>HR invite code</label><input id="adminCode" class="input"></div>
+        </div>
+        <button id="createAccount" class="btn primary" style="width:100%">Create staff account</button>
+        <div id="createResult" class="demo hidden"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="app">
+<header class="appbar"><div class="wordmark">DAYFLOW <span>/</span> PEOPLE DESK<small id="appMode">EMPLOYEE WORKSPACE</small></div><div class="app-user"><div id="appAvatar" class="avatar">AS</div><div><b id="appName">Employee</b><div id="appTitle" class="muted"></div></div></div></header>
+<div class="shell"><aside class="sidebar"><div class="nav-title">Work</div>
+<button class="nav active" data-page="home">Overview</button><button class="nav" data-page="people">Staff register</button><button class="nav" data-page="attendance">Attendance</button><button class="nav" data-page="leave">Leave desk</button><button class="nav" data-page="payroll">Salary register</button><button class="nav" data-page="calendar">Dates & events</button>
+<div class="nav-title">My details</div><button class="nav" data-page="profile">My record</button><button class="nav logout" id="logout">Leave Dayflow</button></aside>
+<main id="main" class="main"></main></div></section>
+<div id="modal"></div>
+
+<script>
+const API="/api";
+let currentUser=null;
+let roleMode="EMPLOYEE";
+
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const money=n=>"₹"+Number(n||0).toLocaleString("en-IN");
+const initials=u=>(u.first_name?.[0]||"")+(u.last_name?.[0]||"");
+const status=t=>`<span class="status ${["ACTIVE","PRESENT","APPROVED","READY"].includes(t)?"active":t==="PENDING"||t==="HALF_DAY"?"pending":t==="REJECTED"||t==="ABSENT"?"rejected":""}">${String(t).replace("_"," ")}</span>`;
+const toast=t=>{const x=document.createElement("div");x.className="toast";x.textContent=t;document.body.appendChild(x);setTimeout(()=>x.remove(),2200)};
+
+async function api(path,options={}){
+  const r=await fetch(API+path,{headers:{"Content-Type":"application/json",...(options.headers||{})},credentials:"same-origin",...options});
+  let body={};try{body=await r.json()}catch(e){}
+  if(!r.ok)throw new Error(body.error||"Request failed");
+  return body;
+}
+
+$("roleEmployee").onclick=()=>{roleMode="EMPLOYEE";$("roleEmployee").classList.add("active");$("roleAdmin").classList.remove("active");$("adminCodeField").style.display="none"};
+$("roleAdmin").onclick=()=>{roleMode="ADMIN";$("roleAdmin").classList.add("active");$("roleEmployee").classList.remove("active");$("adminCodeField").style.display="block"};
+$("tabSignIn").onclick=()=>{$("tabSignIn").classList.add("active");$("tabCreate").classList.remove("active");$("signInView").classList.remove("hidden");$("createView").classList.add("hidden")};
+$("tabCreate").onclick=()=>{$("tabCreate").classList.add("active");$("tabSignIn").classList.remove("active");$("signInView").classList.add("hidden");$("createView").classList.remove("hidden")};
+
+$("signIn").onclick=async()=>{
+ $("loginError").textContent="";
+ try{
+   const r=await api("/auth/login",{method:"POST",body:JSON.stringify({login:$("loginId").value.trim(),password:$("loginPassword").value,role:roleMode})});
+   currentUser=r.user;showApp();
+ }catch(e){$("loginError").textContent=e.message}
+};
+$("loginPassword").addEventListener("keydown",e=>{if(e.key==="Enter")$("signIn").click()});
+
+$("createAccount").onclick=async()=>{
+ try{
+   const payload={first_name:$("newFirst").value.trim(),last_name:$("newLast").value.trim(),email:$("newEmail").value.trim(),joining_date:$("newJoin").value,department:$("newDept").value.trim(),job_title:$("newTitle").value.trim(),role:roleMode,admin_code:$("adminCode").value};
+   const r=await api("/auth/register",{method:"POST",body:JSON.stringify(payload)});
+   $("createResult").classList.remove("hidden");
+   $("createResult").innerHTML=`Account created.<br><b>Login ID:</b> ${esc(r.employee_code)}<br><b>Temporary password:</b> ${esc(r.temporary_password)}<br><button id="useNew" class="btn" style="margin-top:8px">Use these details</button>`;
+   $("useNew").onclick=()=>{$("tabSignIn").click();$("loginId").value=r.employee_code;$("loginPassword").value=r.temporary_password};
+ }catch(e){toast(e.message)}
+};
+
+function showApp(){
+ $("login").style.display="none";$("app").style.display="block";
+ $("appAvatar").textContent=initials(currentUser);$("appName").textContent=currentUser.first_name+" "+currentUser.last_name;$("appTitle").textContent=currentUser.job_title||"";$("appMode").textContent=currentUser.role==="ADMIN"?"ADMIN / HR":"EMPLOYEE WORKSPACE";
+ navigate("home");
+}
+document.querySelectorAll(".nav[data-page]").forEach(b=>b.onclick=()=>navigate(b.dataset.page));
+$("logout").onclick=async()=>{try{await api("/auth/logout",{method:"POST"})}catch(e){}currentUser=null;$("app").style.display="none";$("login").style.display="grid"};
+
+async function navigate(page){
+ document.querySelectorAll(".nav[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+ try{
+   if(page==="home")await home();
+   if(page==="people")await people();
+   if(page==="attendance")await attendance();
+   if(page==="leave")await leave();
+   if(page==="payroll")await payroll();
+   if(page==="calendar")await calendar();
+   if(page==="profile")await profile();
+ }catch(e){$("main").innerHTML=`<div class="card"><b>Something went wrong.</b><div class="muted" style="margin-top:6px">${esc(e.message)}</div></div>`}
+}
+function title(k,h,s,a=""){return `<div class="page-title"><div><div class="kicker">${k}</div><h1>${h}</h1><div class="muted">${s}</div></div>${a}</div>`}
+
+async function home(){
+ const d=await api("/dashboard");
+ if(currentUser.role==="ADMIN"){
+  $("main").innerHTML=title("Today","Morning overview","Attendance, leave and salary at a glance.",`<button class="btn primary" id="addEmployee">Add employee</button>`)+
+  `<div class="grid g4"><div class="card metric"><div class="label">Staff on record</div><div class="number">${d.staff_count}</div><div class="muted">Employees</div></div><div class="card metric"><div class="label">At the office</div><div class="number">${d.present_today}</div><div class="muted">Recorded today</div></div><div class="card metric"><div class="label">Leave to review</div><div class="number">${d.pending_leave}</div><div class="muted">Waiting</div></div><div class="card metric"><div class="label">Monthly wages</div><div class="number">${money(d.monthly_wages)}</div><div class="muted">Gross register</div></div></div>
+  <div class="grid g2" style="margin-top:13px"><div class="card"><h2>Attendance this week</h2><div class="muted">Simple read of recent attendance.</div><div style="display:flex;align-items:end;height:140px;gap:7px;margin-top:12px">${(d.weekly_attendance||[]).map((n,i)=>`<div style="flex:1;height:${Math.max(5,n)}%;background:${i===6?"#20563f":"#8a9b8e"}"></div>`).join("")}</div></div><div class="card"><h2>Leave desk</h2><div class="muted">Requests waiting.</div>${(d.pending_requests||[]).map(x=>`<div class="person-row"><div><b>${esc(x.employee_name)}</b><div class="person-sub">${esc(x.leave_name)} · ${x.start_date} to ${x.end_date}</div></div>${status(x.status)}</div>`).join("")||'<div class="muted" style="margin-top:15px">Nothing waiting.</div>'}</div></div>`;
+  $("addEmployee").onclick=()=>addEmployee();
+ }else{
+  $("main").innerHTML=title("My day","Good morning, "+esc(currentUser.first_name),"Your attendance, leave and salary information.",`<button class="btn primary" id="checkHome">Check in at office</button>`)+
+  `<div class="grid g4"><div class="card metric"><div class="label">Days present</div><div class="number">${d.present_days}</div><div class="muted">This month</div></div><div class="card metric"><div class="label">Leave left</div><div class="number">${d.leave_remaining}</div><div class="muted">Days</div></div><div class="card metric"><div class="label">Monthly pay</div><div class="number">${money(d.monthly_wage)}</div><div class="muted">Gross</div></div><div class="card metric"><div class="label">Employment</div><div class="number" style="font-size:22px">Current</div><div class="muted">${esc(currentUser.department_name||"")}</div></div></div>
+  <div class="grid g3" style="margin-top:13px"><div class="card" id="goAtt" style="cursor:pointer"><h2>Time at work</h2><div class="muted">See your attendance record.</div><div class="rule"></div><b>Open attendance →</b></div><div class="card" id="goLeave" style="cursor:pointer"><h2>Time off</h2><div class="muted">Request paid, sick or unpaid leave.</div><div class="rule"></div><b>Open leave desk →</b></div><div class="card" id="goPay" style="cursor:pointer"><h2>Your pay</h2><div class="muted">Read your monthly salary.</div><div class="rule"></div><b>Open salary →</b></div></div>
+  <div class="card" style="margin-top:13px"><h2>Recent attendance</h2>${(d.recent_attendance||[]).map(a=>`<div class="person-row"><div><b>${a.attendance_date}</b><div class="person-sub">${a.check_in||"—"} to ${a.check_out||"—"} · ${esc(a.verification_method||"")}</div></div>${status(a.status)}</div>`).join("")||'<div class="muted">No records yet.</div>'}</div>`;
+  $("checkHome").onclick=openScanner;$("goAtt").onclick=()=>navigate("attendance");$("goLeave").onclick=()=>navigate("leave");$("goPay").onclick=()=>navigate("payroll");
+ }
+}
+
+async function people(){
+ const r=await api("/employees");
+ const em=r.employees;
+ $("main").innerHTML=title("Staff register","People","Ordinary work information is visible here. Sensitive details stay protected.",`<input id="personSearch" class="input" placeholder="Search employees">`)+
+ `<div class="grid g3" id="peopleGrid">${em.map(u=>`<div class="card staff"><div class="person"><div class="avatar" style="width:43px;height:43px">${initials(u)}</div><div><b>${esc(u.first_name+" "+u.last_name)}</b><div class="person-sub">${esc(u.job_title||"")}</div></div></div><div class="rule"></div><div class="muted">${esc(u.department_name||"")}</div><div class="muted" style="margin-top:5px">${esc(u.email)}</div><div style="margin-top:14px"><button class="btn viewPerson" data-id="${u.employee_id}">Open staff record</button></div></div>`).join("")}</div>`;
+ document.querySelectorAll(".viewPerson").forEach(b=>b.onclick=()=>profileCard(b.dataset.id));
+ $("personSearch").oninput=e=>document.querySelectorAll(".staff").forEach(c=>c.style.display=c.textContent.toLowerCase().includes(e.target.value.toLowerCase())?"block":"none");
+}
+
+async function attendance(){
+ const r=await api("/attendance");
+ $("main").innerHTML=title("Attendance","Time at work",currentUser.role==="ADMIN"?"All employee records are visible here.":"Only your own attendance is shown.",currentUser.role==="ADMIN"?"":`<button class="btn primary" id="scanButton">Check in at office</button>`)+
+ `<div class="card"><h2>Attendance register</h2><div class="muted">Date, check-in, check-out and verification method.</div><div class="table-wrap" style="margin-top:10px"><table class="table"><thead><tr><th>Employee</th><th>Date</th><th>In</th><th>Out</th><th>Status</th><th>Method</th></tr></thead><tbody>${r.records.map(a=>`<tr><td>${esc(a.employee_name)}</td><td>${a.attendance_date}</td><td>${a.check_in||"—"}</td><td>${a.check_out||"—"}</td><td>${status(a.status)}</td><td>${esc(a.verification_method||"")}</td></tr>`).join("")}</tbody></table></div></div>`;
+ if(currentUser.role!=="ADMIN")$("scanButton").onclick=openScanner;
+}
+
+async function leave(){
+ if(currentUser.role==="ADMIN"){
+  const r=await api("/leaves");
+  $("main").innerHTML=title("Leave desk","Requests","Approve or reject employee time off.",`<span class="status pending">${r.pending.length} waiting</span>`)+
+  `<div class="card"><table class="table"><thead><tr><th>Employee</th><th>Type</th><th>Dates</th><th>Reason</th><th>Status</th><th>Decision</th></tr></thead><tbody>${r.pending.map(l=>`<tr><td>${esc(l.employee_name)}</td><td>${esc(l.leave_name)}</td><td>${l.start_date} → ${l.end_date}</td><td>${esc(l.reason||"")}</td><td>${status(l.status)}</td><td><button class="btn" data-id="${l.leave_request_id}" data-ok="1">Approve</button> <button class="btn danger" data-id="${l.leave_request_id}" data-ok="0">Reject</button></td></tr>`).join("")||'<tr><td colspan="6">No pending requests.</td></tr>'}</tbody></table></div>`;
+  document.querySelectorAll("[data-id][data-ok]").forEach(b=>b.onclick=()=>decideLeave(b.dataset.id,b.dataset.ok==="1"));
+ }else{
+  const r=await api("/leaves");
+  $("main").innerHTML=title("My time off","Leave requests","Choose a leave type, dates and reason.",`<button class="btn primary" id="newLeave">New leave request</button>`)+
+  `<div class="card"><h2>Your requests</h2>${r.requests.map(l=>`<div class="person-row"><div><b>${esc(l.leave_name)} leave</b><div class="person-sub">${l.start_date} to ${l.end_date} · ${esc(l.reason||"")}</div></div>${status(l.status)}</div>`).join("")||'<div class="muted">No requests yet.</div>'}</div>`;
+  $("newLeave").onclick=openLeaveForm;
+ }
+}
+
+async function payroll(){
+ if(currentUser.role!=='ADMIN')return employeePayroll();
+ const r=await api('/payroll');
+ $('main').innerHTML=title('Payroll','Salary register','Admin controls for salary, bonuses, deductions and revisions.',`<button class="btn primary" id="newRevision">New salary revision</button>`)+
+ `<div class="grid g4"><div class="card metric"><div class="label">Gross payroll</div><div class="number">${money(r.total_gross)}</div><div class="muted">Monthly</div></div><div class="card metric"><div class="label">Net payroll</div><div class="number">${money(r.total_net)}</div><div class="muted">After deductions</div></div><div class="card metric"><div class="label">Employees</div><div class="number">${r.records.length}</div><div class="muted">Salary register</div></div><div class="card metric"><div class="label">Revisions</div><div class="number">${r.revision_count}</div><div class="muted">Saved changes</div></div></div>
+ <div class="card" style="margin-top:13px"><div class="person-row"><div><h2>Employee salaries</h2><div class="muted">Edit the complete compensation structure per employee.</div></div><button class="btn" id="exportPayroll">Prepare report</button></div><div class="table-wrap"><table class="table"><thead><tr><th>Employee</th><th>Department</th><th>Basic</th><th>Allowances</th><th>Bonus / OT</th><th>Deductions</th><th>Net</th><th>Manage</th></tr></thead><tbody>${r.records.map(x=>`<tr><td><b>${esc(x.employee_name)}</b><div class="person-sub">${esc(x.employee_code)}</div></td><td>${esc(x.department_name||'')}</td><td>${money(x.basic_salary)}</td><td>${money(x.allowances)}</td><td>${money(x.bonus_overtime)}</td><td>${money(x.deductions)}</td><td><b>${money(x.net_salary)}</b></td><td><button class="btn managePay" data-id="${x.employee_id}">Edit salary</button></td></tr>`).join('')}</tbody></table></div></div>
+ <div class="grid g2" style="margin-top:13px"><div class="card"><h2>Recent revisions</h2>${r.revisions.map(h=>`<div class="person-row"><div><b>${esc(h.employee_name)}</b><div class="person-sub">${h.effective_date} · ${esc(h.reason)} · ${h.status}</div></div><b>${money(h.gross_salary)}</b></div>`).join('')}</div><div class="card"><h2>Admin controls</h2><div class="notice">Basic salary, HRA, allowances, performance bonus, overtime, PF, professional tax and custom earnings or deductions can be edited per employee.</div></div></div>`;
+ $('newRevision').onclick=()=>openSalaryEditor(r.records[0]?.employee_id);$('exportPayroll').onclick=()=>toast('Payroll report prepared.');document.querySelectorAll('.managePay').forEach(b=>b.onclick=()=>openSalaryEditor(b.dataset.id));
+}
+async function employeePayroll(){
+ const r=await api('/payroll/me'),x=r.record;
+ $('main').innerHTML=title('Pay & salary','My salary','Read-only employee view.',`<button class="btn" onclick="toast('Salary slip preview prepared.')">Salary slip</button>`)+
+ `<div class="grid g3"><div class="card metric"><div class="label">Gross</div><div class="number">${money(x?.gross_salary)}</div></div><div class="card metric"><div class="label">Deductions</div><div class="number">${money(x?.deductions)}</div></div><div class="card metric"><div class="label">Net pay</div><div class="number">${money(x?.net_salary)}</div></div></div><div class="card" style="margin-top:13px"><h2>Monthly breakdown</h2>${(r.components||[]).map(c=>`<div class="person-row"><span>${esc(c.name)}</span><b>${money(c.amount)}</b></div>`).join('')}</div>`;
+}
+async function openSalaryEditor(eid){
+ const r=await api('/payroll/'+eid),u=r.employee;
+ const line=c=>`<div class="component-line" style="display:grid;grid-template-columns:1.2fr .8fr .8fr auto;gap:8px;margin-bottom:8px;align-items:center"><input class="input cname" value="${esc(c.name)}"><select class="input ctype"><option value="EARNING" ${c.type==='EARNING'?'selected':''}>Earning</option><option value="DEDUCTION" ${c.type==='DEDUCTION'?'selected':''}>Deduction</option></select><input class="input camount" type="number" min="0" step="100" value="${Math.abs(Number(c.amount))}"><button class="btn removeComp">Remove</button></div>`;
+ $('modal').innerHTML=`<div class="modal-bg"><div class="modal"><div class="modal-head"><div><div class="kicker">Payroll management</div><h2>Edit salary — ${esc(u.first_name+' '+u.last_name)}</h2><div class="muted">${esc(u.job_title||'')} · ${esc(u.department_name||'')}</div></div><button class="btn" id="closePay">Close</button></div><div class="grid g3"><div class="card metric"><div class="label">Gross</div><div class="number" id="pg">${money(r.gross_salary)}</div></div><div class="card metric"><div class="label">Deductions</div><div class="number" id="pd">${money(r.deductions)}</div></div><div class="card metric"><div class="label">Net pay</div><div class="number" id="pn">${money(r.net_salary)}</div></div></div><div class="rule"></div><div class="person-row"><div><h2>Salary components</h2><div class="muted">Edit, remove or add any earning or deduction.</div></div><button class="btn" id="addComponent">Add component</button></div><div id="componentRows" style="margin-top:10px">${r.components.map(line).join('')}</div><div class="form-grid" style="margin-top:15px"><div class="field"><label>Effective from</label><input id="effectiveDate" class="input" type="date" value="${new Date().toISOString().slice(0,10)}"></div><div class="field"><label>Reason</label><input id="revisionReason" class="input" placeholder="Promotion / annual revision / bonus"></div></div><div class="field"><label>HR note</label><textarea id="salaryNote" class="input" rows="3"></textarea></div><div style="display:flex;gap:8px"><button class="btn" id="cancelSalary">Cancel</button><button class="btn" id="saveDraft">Save as draft</button><button class="btn primary" id="saveProcessed">Save & mark processed</button></div></div></div>`;
+ $('closePay').onclick=closeModal;$('cancelSalary').onclick=closeModal;
+ const bind=()=>document.querySelectorAll('.removeComp').forEach(b=>b.onclick=()=>{b.closest('.component-line').remove();preview()});
+ const preview=()=>{let g=0,d=0;document.querySelectorAll('.component-line').forEach(row=>{const t=row.querySelector('.ctype').value,a=Number(row.querySelector('.camount').value||0);if(t==='EARNING')g+=a;else d+=a});$('pg').textContent=money(g);$('pd').textContent=money(d);$('pn').textContent=money(g-d)};
+ bind();document.querySelectorAll('.camount,.ctype').forEach(x=>x.oninput=preview);
+ $('addComponent').onclick=()=>{$('componentRows').insertAdjacentHTML('beforeend',line({name:'New component',type:'EARNING',amount:0}));bind();document.querySelectorAll('.camount,.ctype').forEach(x=>x.oninput=preview)};
+ async function saveSalary(state){const components=[...document.querySelectorAll('.component-line')].map(row=>({name:row.querySelector('.cname').value.trim(),type:row.querySelector('.ctype').value,amount:Number(row.querySelector('.camount').value||0)})).filter(x=>x.name);if(!components.length){toast('Add at least one component.');return}try{await api('/payroll/'+eid,{method:'PUT',body:JSON.stringify({effective_date:$('effectiveDate').value,reason:$('revisionReason').value.trim()||'Salary adjustment',note:$('salaryNote').value.trim(),status:state,components})});closeModal();toast('Salary updated.');payroll()}catch(e){toast(e.message)}}
+ $('saveDraft').onclick=()=>saveSalary('DRAFT');$('saveProcessed').onclick=()=>saveSalary('PROCESSED');
+}
+async function profile(){
+ const r=await api("/employees/me");
+ const u=r.employee;
+ $("main").innerHTML=title("My record","Profile","Contact details, documents and compensation.",`<button class="btn" id="editProfile">Edit allowed fields</button>`)+
+ `<div class="card"><div class="person"><div class="avatar" style="width:58px;height:58px;font-size:18px">${initials(u)}</div><div><div class="kicker">${u.role}</div><h2 style="font-family:Georgia,serif;font-size:26px;font-weight:normal;margin:5px 0">${esc(u.first_name+" "+u.last_name)}</h2><div class="muted">${esc(u.job_title)} · ${esc(u.department_name||"")}</div></div></div><div class="grid g3" style="margin-top:17px">${detail("Employee ID",u.employee_code)}${detail("Joining date",u.joining_date)}${detail("Work email",u.email)}${detail("Phone",u.phone||"Not set")}${detail("Location",u.location||"")}${detail("Department",u.department_name||"")}</div></div>
+ <div class="grid g2" style="margin-top:13px"><div class="card"><h2>Documents</h2><div id="documents"></div></div><div class="card"><h2>Private information</h2><div class="notice">Sensitive fields are protected by the backend.</div></div></div>`;
+ $("editProfile").onclick=openEditProfile;
+ const docs=await api("/documents/me");$("documents").innerHTML=(docs.documents||[]).map(d=>`<div class="person-row"><div><b>${esc(d.file_name)}</b><div class="person-sub">${esc(d.document_type)}</div></div><button class="btn" onclick="toast('Document viewer placeholder.')">View</button></div>`).join("")||'<div class="muted">No documents on file.</div>';
+}
+
+const detail=(a,b)=>`<div class="card"><div class="kicker" style="color:var(--muted);letter-spacing:.7px">${a}</div><div style="margin-top:6px;font-weight:bold;font-size:12px">${esc(b)}</div></div>`;
+
+async function calendar(){
+ const r=await api("/events");
+ const events={};(r.events||[]).forEach(x=>events[x.event_date]=x.title);
+ let html=title("Company dates","Dates & events","Company events, payroll and people dates.",currentUser.role==="ADMIN"?`<button class="btn primary" id="addEvent">Add event</button>`:"");
+ html+=`<div class="card"><div class="calendar">${["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(x=>`<div class="cal-head">${x}</div>`).join("")}`;
+ const first=new Date(2026,7,1).getDay();for(let i=0;i<first;i++)html+="<div></div>";
+ for(let d=1;d<=31;d++)html+=`<div class="cal-day ${d===22?"today":""}"><b>${d}</b>${events["2026-08-"+String(d).padStart(2,"0")]?`<div class="event">${esc(events["2026-08-"+String(d).padStart(2,"0")])}</div>`:""}</div>`;
+ html+="</div></div>";$("main").innerHTML=html;
+ if(currentUser.role==="ADMIN")$("addEvent").onclick=openEventForm;
+}
+
+async function profileCard(id){
+ const r=await api("/employees/"+id),u=r.employee;
+ const can=currentUser.role==="ADMIN";
+ $("modal").innerHTML=`<div class="modal-bg"><div class="modal"><div class="modal-head"><div><div class="kicker">Staff record</div><h2>${esc(u.first_name+" "+u.last_name)}</h2><div class="muted">${esc(u.job_title)} · ${esc(u.department_name||"")}</div></div><button class="btn" id="close">Close</button></div><div class="grid g3">${detail("Employee ID",u.employee_code)}${detail("Joined",u.joining_date)}${detail("Email",u.email)}${detail("Phone",can?u.phone:"Private")}${detail("Location",u.location)}${detail("Salary",can?money(u.salary||0):"Private")}</div></div></div>`;$("close").onclick=closeModal;
+}
+
+async function openScanner(){
+  const r=await api('/attendance/office-code');
+  $('modal').innerHTML=`<div class="modal-bg"><div class="modal"><div class="modal-head"><div><div class="kicker">Office attendance</div><h2>Check in at the office</h2><div class="muted">Use the short-lived code displayed at reception.</div></div><button class="btn" id="closeScan">Close</button></div>
+  <div class="card" style="background:#eee9de"><div class="kicker green">Step 1</div><h2>Office code</h2><div class="muted">This code is generated by the Python server and expires automatically.</div><div style="font:700 42px monospace;letter-spacing:7px;text-align:center;color:var(--green);margin:22px 0" id="officeCode">${esc(r.code)}</div><div class="muted" id="codeTimer">Valid for about ${r.remaining_seconds}s</div></div>
+  <div class="card" style="margin-top:12px"><div class="kicker green">Step 2</div><h2>Optional location check</h2><div class="muted">The browser can send a location signal as an additional office check.</div><button class="btn" id="locationBtn" style="margin-top:10px">Check location</button><div class="muted" id="locationResult" style="margin-top:8px"></div></div>
+  <div class="field" style="margin-top:12px"><label>Enter today's office code</label><input id="officeInput" class="input" maxlength="7" placeholder="DF-4821"></div>
+  <button class="btn primary" id="markAttendance" style="width:100%">Verify and mark attendance</button>
+  <div class="notice" style="margin-top:12px">The backend validates the code and creates the attendance record. The browser cannot directly modify the attendance data.</div>
+  </div></div>`;
+  $('closeScan').onclick=closeModal;
+  let remaining=r.remaining_seconds;
+  const refresh=setInterval(async()=>{try{const x=await api('/attendance/office-code');$('officeCode').textContent=x.code;$('codeTimer').textContent=`Valid for about ${x.remaining_seconds}s`;remaining=x.remaining_seconds}catch{}} ,1000);
+  $('locationBtn').onclick=()=>{if(!navigator.geolocation){$('locationResult').textContent='Location is unavailable.';return}navigator.geolocation.getCurrentPosition(p=>{$('locationResult').textContent=`Location received (${p.coords.latitude.toFixed(4)}, ${p.coords.longitude.toFixed(4)})`},()=>{$('locationResult').textContent='Location permission was denied.'})};
+  $('markAttendance').onclick=async()=>{try{await api('/attendance/check-in',{method:'POST',body:JSON.stringify({office_code:$('officeInput').value.trim().toUpperCase(),location_verified:$('locationResult').textContent.includes('Location received')})});clearInterval(refresh);closeModal();toast('Attendance recorded.');attendance()}catch(e){toast(e.message)}};
+}
+async function attendance(){
+ const r=await api('/attendance');
+ $('main').innerHTML=title('Attendance','Time at work',currentUser.role==='ADMIN'?'All employee records are visible here.':'Only your own attendance is shown.',currentUser.role==='ADMIN'?`<button class="btn primary" id="rotateCode">Rotate office code</button>`:`<button class="btn primary" id="scanButton">Check in at office</button>`)+
+ `<div class="grid g4"><div class="card metric"><div class="label">Present records</div><div class="number">${r.present_count}</div><div class="muted">Current data</div></div><div class="card metric"><div class="label">Half-days</div><div class="number">${r.half_day_count}</div><div class="muted">Current data</div></div><div class="card metric"><div class="label">Verification</div><div class="number" style="font-size:19px">Office code</div><div class="muted">Short-lived token</div></div><div class="card metric"><div class="label">Current code</div><div class="number" style="font:700 21px monospace;letter-spacing:3px">${esc(r.office_code)}</div><div class="muted">${r.office_remaining_seconds}s left</div></div></div>
+ <div class="card" style="margin-top:13px"><h2>Attendance register</h2><div class="muted">Employee, date, check-in and verification method.</div><div class="table-wrap" style="margin-top:10px"><table class="table"><thead><tr><th>Employee</th><th>Date</th><th>In</th><th>Out</th><th>Status</th><th>Method</th></tr></thead><tbody>${r.records.map(a=>`<tr><td>${esc(a.employee_name)}</td><td>${a.attendance_date}</td><td>${a.check_in||'—'}</td><td>${a.check_out||'—'}</td><td>${status(a.status)}</td><td>${esc(a.verification_method||'')}</td></tr>`).join('')}</tbody></table></div></div>`;
+ if(currentUser.role==='ADMIN')$('rotateCode').onclick=async()=>{try{const x=await api('/attendance/office-code/rotate',{method:'POST'});toast('New office code: '+x.code);attendance()}catch(e){toast(e.message)}};else $('scanButton').onclick=openScanner;
+}
+async function openLeaveForm(){
+ $("modal").innerHTML=`<div class="modal-bg"><div class="modal"><div class="modal-head"><div><div class="kicker">Time off</div><h2>New leave request</h2></div><button class="btn" id="close">Close</button></div><div class="form-grid"><div class="field"><label>Leave type</label><select id="lt" class="input"></select></div><div class="field"><label>From</label><input id="lf" class="input" type="date"></div><div class="field"><label>To</label><input id="lto" class="input" type="date"></div><div class="field full"><label>Reason</label><textarea id="lr" class="input" rows="4"></textarea></div></div><button class="btn primary" id="send" style="width:100%">Send request</button></div></div>`;
+ $("close").onclick=closeModal;
+ const types=await api("/leave-types");$("lt").innerHTML=types.types.map(x=>`<option value="${x.leave_type_id}">${esc(x.leave_name)}</option>`).join("");
+ $("send").onclick=async()=>{try{await api("/leaves",{method:"POST",body:JSON.stringify({leave_type_id:Number($("lt").value),start_date:$("lf").value,end_date:$("lto").value,reason:$("lr").value})});closeModal();toast("Leave request sent.");leave()}catch(e){toast(e.message)}};
+}
+async function decideLeave(id,approve){try{await api("/leaves/"+id+"/decision",{method:"PATCH",body:JSON.stringify({decision:approve?"APPROVED":"REJECTED",comment:approve?"Approved by HR":"Please discuss the dates with HR."})});toast(approve?"Leave approved.":"Leave rejected.");leave()}catch(e){toast(e.message)}}
+function openEditProfile(){
+ $("modal").innerHTML=`<div class="modal-bg"><div class="modal"><div class="modal-head"><div><div class="kicker">My record</div><h2>Edit contact details</h2></div><button class="btn" id="close">Close</button></div><div class="field"><label>Phone</label><input id="ep" class="input" value="${esc(currentUser.phone||"")}"></div><div class="field"><label>Location</label><input id="el" class="input" value="${esc(currentUser.location||"")}"></div><button class="btn primary" id="save" style="margin-top:8px">Save changes</button></div></div>`;
+ $("close").onclick=closeModal;$("save").onclick=async()=>{try{const r=await api("/employees/me",{method:"PATCH",body:JSON.stringify({phone:$("ep").value,location:$("el").value})});currentUser={...currentUser,...r.employee};closeModal();toast("Profile updated.");profile()}catch(e){toast(e.message)}};
+}
+function addEmployee(){
+ $("modal").innerHTML=`<div class="modal-bg"><div class="modal"><div class="modal-head"><div><div class="kicker">Staff register</div><h2>Add employee</h2></div><button class="btn" id="close">Close</button></div><div class="form-grid"><div class="field"><label>First name</label><input id="af" class="input"></div><div class="field"><label>Last name</label><input id="al" class="input"></div><div class="field"><label>Work email</label><input id="ae" class="input"></div><div class="field"><label>Joining date</label><input id="aj" class="input" type="date"></div><div class="field"><label>Department</label><input id="ad" class="input"></div><div class="field"><label>Job title</label><input id="at" class="input"></div></div><button class="btn primary" id="saveEmp" style="margin-top:14px">Create employee</button></div></div>`;
+ $("close").onclick=closeModal;$("saveEmp").onclick=async()=>{try{const r=await api("/employees",{method:"POST",body:JSON.stringify({first_name:$("af").value,last_name:$("al").value,email:$("ae").value,joining_date:$("aj").value,department:$("ad").value,job_title:$("at").value})});closeModal();toast("Employee created. Temporary password generated.");profileCard(r.employee.employee_id)}catch(e){toast(e.message)}};
+}
+function openEventForm(){
+ $("modal").innerHTML=`<div class="modal-bg"><div class="modal"><div class="modal-head"><div><div class="kicker">Company calendar</div><h2>Add event</h2></div><button class="btn" id="close">Close</button></div><div class="field"><label>Title</label><input id="et" class="input"></div><div class="field"><label>Date</label><input id="ed" class="input" type="date"></div><div class="field"><label>Description</label><textarea id="ex" class="input" rows="4"></textarea></div><button class="btn primary" id="saveEv">Save event</button></div></div>`;
+ $("close").onclick=closeModal;$("saveEv").onclick=async()=>{try{await api("/events",{method:"POST",body:JSON.stringify({title:$("et").value,event_date:$("ed").value,description:$("ex").value})});closeModal();toast("Event saved.");calendar()}catch(e){toast(e.message)}};
+}
+function closeModal(){$("modal").innerHTML=""}
+
+window.addEventListener("load",async()=>{
+ try{
+  const r=await api("/auth/me");currentUser=r.user;showApp();
+ }catch(e){}
+});
+</script>
+</body>
+</html>
