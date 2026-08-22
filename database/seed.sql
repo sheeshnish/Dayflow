@@ -1,1 +1,0 @@
--- Demo data is seeded automatically by backend/app.py on first run.
