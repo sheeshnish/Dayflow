@@ -1,5 +1,3 @@
-# Dayflow Final Hackathon Product
-
 # Dayflow — HR Management System
 
 > **A unified Human Resource Management System for employees and administrators**
